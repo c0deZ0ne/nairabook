@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta
+      name="author"
+      content="Mark Otto, Jacob Thornton, and Bootstrap contributors"
+    />
+    <meta name="generator" content="Hugo 0.104.2" />
+    <title>Nairabooks</title>
+
+    <link
+      rel="canonical"
+      href="https://getbootstrap.com/docs/5.2/examples/album/"
+    />
+
+    <link
+      href="/stylesheets/bootstrap/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./stylesheets/home.css" />
+  </head>
+
+  <body>
+    <header>
+      <div class="collapse bg-dark" id="navbarHeader">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-8 col-md-7 py-4">
+              <h4 class="text-white">About Us</h4>
+              <p class="text-muted">
+                Nairabook is a free open souces website for all your book needs.
+                we have a wide range of books for all ages and all genres. To
+                partner with us create an account and we will get back to you.
+              </p>
+            </div>
+            <div class="col-sm-4 offset-md-1 py-4"></div>
+          </div>
+        </div>
+      </div>
+      <div class="navbar navbar-dark bg-dark shadow-sm">
+        <div class="container">
+          <a href="#" class="navbar-brand d-flex align-items-center">
+            <strong> <a class="home-btn" href="/">Nairabook</a> </strong>
+          </a>
+          <ul class="list-unstyled">
+            <% if(!user){%>
+            <li class="navlink">
+              <a href="/auth/register" class="text-white">Register</a>
+            </li>
+            <li class="navlink">
+              <a href="/auth/login" class="text-white">Login </a>
+            </li>
+            <%} %> <% if(user){%>
+            <li><a href="/auth/logout" class="text-white">logout</a></li>
+            <%} %> <% if(user){%>
+            <li class="navlink">
+              <a href="/user/dashboard" class="text-white">Dashboard</a>
+            </li>
+            <%} %>
+          </ul>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarHeader"
+            aria-controls="navbarHeader"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <% console.log(user) %>
+      <div class="album py-5 bg-light">
+        <div class="container">
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            <% data.forEach((item) => { %>
+            <div class="col" style="display: flex">
+              <div class="card shadow-sm">
+                <%if(!item.image){%>
+                <svg
+                  class="bd-placeholder-img card-img-top"
+                  width="100%"
+                  height="225"
+                  xmlns="http://www.w3.org/2000/svg"
+                  role="img"
+                  aria-label="Placeholder: Thumbnail"
+                  preserveAspectRatio="xMidYMid slice"
+                  focusable="false"
+                  style="display: flex; padding: 20px"
+                >
+                  <title>Placeholder</title>
+                  <rect width="100%" height="300px" fill="#55595c" />
+                  <text x="90%" y="50%" fill="#eceeef" dy=".3em"></text>
+                </svg>
+                <%} else {%>
+                <img
+                  style="
+                    position: relative;
+                    max-height: 300px;
+                    padding: 20px;
+                    width: 100%;
+                    justify-content: center;
+                    object-fit: contain;
+                    display: flex;
+                    flex: 1;
+                  "
+                  src="<%=item.image%>"
+                  alt=" image"
+                  srcset=""
+                />
+                <%}%>
+                <div class="card-body">
+                  <p class="card-text"><%=item.description%></p>
+                  <div
+                    class="d-flex justify-content-between align-items-center"
+                  >
+                    <div class="btn-group">
+                      <button
+                        type="button"
+                        class="btn btn-sm btn-outline-secondary"
+                      >
+                        Preview
+                      </button>
+
+                      <button
+                        type="button"
+                        class="btn btn-sm btn-outline-secondary"
+                      >
+                        Read
+                      </button>
+                    </div>
+                    <small class="text-muted">
+                      <strong>price <%=item.price %> </strong></small
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+            <% }) %>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="script/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

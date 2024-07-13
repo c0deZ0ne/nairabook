@@ -1,0 +1,27 @@
+{
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "prettier-eslint-typescript.eslintConfig": {
+    "parserOptions": {
+      "ecmaVersion": 2021,
+      "sourceType": "module"
+    },
+    "prettier.configPath": ".prettierrc"
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+  },
+  "cSpell.words": ["Dogubo", "Formik", "Splenzert", "Paidstatus"]
+}

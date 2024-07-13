@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "useDefineForClassFields": true,
+    "moduleResolution": "Bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noUnusedLocals": false, // Allow unused variables
+    "noUnusedParameters": false, // Allow unused parameters
+    "noFallthroughCasesInSwitch": true,
+    "allowImportingTsExtensions": true,
+    "jsx": "react-jsx",
+    "esModuleInterop": true,
+    "lib": ["DOM", "ESNext"],
+    "strict": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "types": ["vite/client", "react", "react-dom"],
+    "allowSyntheticDefaultImports": true
+  },
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.js"]
+}

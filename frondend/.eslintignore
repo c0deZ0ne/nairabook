@@ -1,0 +1,9 @@
+*.css
+*.svg
+build
+vite-env.d
+*.cjs
+vite.config.ts
+node_modules
+tax_orbit_ui_v1_demo
+*tax_orbit_ui_v1_demo

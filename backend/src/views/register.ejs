@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="generator" content="Hugo 0.104.2" />
+
+    <link
+      href="/stylesheets/bootstrap/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/stylesheets/register.css" />
+  </head>
+  <body>
+    <img src="/images/home.jpg" class="bg-img" alt="" />
+    <div
+      class="modal modal-signin position-static d-block bg-secondary py-3"
+      tabindex="-1"
+      role="dialog"
+      id="modalSignin"
+      style="opacity: 1"
+    >
+      <!-- <div class="modal-dialog" role="document"> -->
+      <div
+        class="modal-content p-3 rounded-4 shadow"
+        style="width: 40vw; margin: 0 auto"
+      >
+        <!-- <div class="modal-header p-5 pb-4 border-bottom-0">
+            <h1 class="fw-bold mb-0 fs-2">Sign up for free</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div> -->
+
+        <div class="modal-body p-5 pt-0">
+          <form class="" id="reg-form">
+            <div class="form-floating mb-3">
+              <input
+                onkeyup="handleChange(this)"
+                type="email"
+                name="email"
+                class="form-control rounded-3"
+                id="floatingInput"
+                placeholder="name@example.com"
+              />
+              <label for="floatingInput">Email address</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input
+                name="password"
+                type="password"
+                class="form-control rounded-3"
+                id="floatingPassword"
+                placeholder="Password"
+                onkeyup="handleChange(this)"
+              />
+              <label for="floatingPassword">Password</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input
+                onkeyup="handleChange(this)"
+                type="text"
+                name="fullname"
+                class="form-control rounded-3"
+                id="floatingInput"
+                placeholder="fullname"
+              />
+              <label for="floatingInput">Full Name</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input
+                name="address"
+                type="address"
+                class="form-control rounded-3"
+                id="address"
+                placeholder="address"
+                onkeyup="handleChange(this)"
+              />
+              <label for="address">Home Address</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input
+                name="phone"
+                type="tel"
+                class="form-control rounded-3"
+                id="phone"
+                placeholder="Phone Number"
+                onkeyup="handleChange(this)"
+              />
+              <label for="address">Phone Number</label>
+            </div>
+            <button
+              class="w-100 mb-2 btn btn-lg rounded-3 btn-primary"
+              type="submit"
+            >
+              Sign up
+            </button>
+            <small class="text-muted"
+              >By clicking Sign up, you agree to the terms of use.</small
+            >
+            <hr class="my-4" />
+            <h2 class="fs-5 fw-bold mb-3">Or use a third-party</h2>
+            <button
+              class="w-100 py-2 mb-2 btn btn-outline-dark rounded-3"
+              type="submit"
+            >
+              <svg class="bi me-1" width="16" height="16">
+                <use xlink:href="#twitter" />
+              </svg>
+              Sign up with Twitter
+            </button>
+            <button
+              class="w-100 py-2 mb-2 btn btn-outline-primary rounded-3"
+              type="submit"
+            >
+              <svg class="bi me-1" width="16" height="16">
+                <use xlink:href="#facebook" />
+              </svg>
+              Sign up with Facebook
+            </button>
+            <button
+              class="w-100 py-2 mb-2 btn btn-outline-secondary rounded-3"
+              type="submit"
+            >
+              <svg class="bi me-1" width="16" height="16">
+                <use xlink:href="#github" />
+              </svg>
+              Sign up with GitHub
+            </button>
+          </form>
+        </div>
+      </div>
+      <!-- </div> -->
+    </div>
+    <script src="/script/js/bootstrap.bundle.min.js"></script>
+    <script src="/script/index.js"></script>
+  </body>
+</html>

@@ -1,0 +1,208 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  height: '100vh';
+  width: '100vw';
+  font-family: 'Open Sans' !important;
+  font-size: 'small';
+  font-style: normal;
+}
+
+.tooltip {
+  @apply absolute z-30 bottom-[-38px] text-[12px] w-[180px] px-[10px] bg-white text-black py-3 rounded shadow-md hidden;
+}
+
+.tooltip-container:hover .tooltip {
+  @apply block;
+}
+
+.max-w {
+  @apply max-w-[1440px] mx-auto px-4 md:px-10 xl:px-24;
+}
+
+.scrollbar::-webkit-scrollbar {
+  position: absolute;
+  display: block;
+  width: 1px;
+  height: 5px;
+}
+
+.scrollbar::-webkit-scrollbar-track {
+  display: block;
+  border: none;
+}
+
+/* scrollbar itself */
+.scrollbar::-webkit-scrollbar-thumb {
+  display: block;
+  width: 2px;
+  background: #acb2c9;
+  border-radius: 20px;
+}
+
+.scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #3a56cd;
+  cursor: pointer;
+}
+
+/* set button(top and bottom of the scrollbar) */
+.scrollbar::-webkit-scrollbar-button {
+  display: none;
+}
+
+::-webkit-scrollbar {
+  width: 0.1rem;
+  height: 0.1rem;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
+/* For Webkit-based browsers (Chrome, Safari, and Opera) */
+.scrollbar-hide ::-webkit-scrollbar {
+  display: none;
+}
+
+/* For IE, Edge, and Firefox */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.custom-drop-shadow {
+  box-shadow: 2px 2px 5px rgba(11, 9, 9, 0);
+  background-color: rgba(1, 9, 9, 0.2);
+  outline: none;
+}
+
+.custom-popover {
+  /* background-color: rgba(11, 9, 9, 0.041); */
+  /* Adjust the last value for transparency */
+  backdrop-filter: blur(0.6px);
+}
+.custom-modalPop {
+  background-color: rgba(11, 9, 9, 0.9);
+  /* Adjust the last value for transparency */
+  backdrop-filter: blur(10px);
+}
+
+.custom-popover-second-level {
+  background-color: rgba(1, 9, 9, 0.395);
+  /* Adjust the last value for transparency */
+  /* backdrop-filter: blur(0.1px); */
+}
+
+#btn-test {
+  /* background: red !important; */
+  opacity: 10 !important;
+}
+
+/* .custom-popover {
+  width: 800px;
+  height: 500px;
+  border-radius: 50px;
+} */
+
+/* .MuiPaper-root{
+  background:none;
+  background-color: transparent !important;
+ position: fixed;
+  
+} */
+
+input {
+  font-family: 'Open Sans' !important;
+}
+text {
+  font-family: 'Open Sans' !important;
+}
+textarea {
+  font-family: '';
+}
+
+/* styles.css */
+@keyframes scroll {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.marquee {
+  overflow: hidden;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+
+.marquee span {
+  display: inline-block;
+  padding-left: 100%;
+  animation: scroll 100s linear infinite;
+  animation-delay: 2s;
+}
+
+pre {
+  font-size: 'Open Sans' !important;
+}
+
+.error-404-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+  /* background-color: #f8f9fa; */
+  padding: 20px;
+}
+
+.error-404-text {
+  margin-top: 20px;
+}
+
+.error-404-text h1 {
+  font-size: 2rem;
+  color: #333;
+}
+
+.error-404-text p {
+  font-size: 1.2rem;
+  color: #666;
+}
+
+.error-404-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+  /* background-color: #f8f9fa; */
+  padding: 20px;
+}
+
+.error-404-text {
+  margin-top: 20px;
+}
+
+.error-404-text h1 {
+  font-size: 2rem;
+  color: #7d7d7d; /* Grey color */
+}
+
+.error-404-text p {
+  font-size: 1.2rem;
+  color: #7d7d7d; /* Grey color */
+}

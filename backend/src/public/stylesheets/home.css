@@ -1,0 +1,46 @@
+.home-btn {
+  /* background-color: #4caf50; */
+  border: none;
+  color: white;
+  /* padding: 15px 32px; */
+  text-align: center;
+  text-decoration: none;
+  display: inline;
+  font-size: 16px;
+  /* margin: 4px 2px; */
+  cursor: pointer;
+  position: absolute;
+  display: flex;
+  left: 10px;
+  align-self: center;
+  top: 25%;
+}
+
+.list-unstyled {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  /* background-color: #333; */
+  display: flex;
+  flex-direction: row;
+  width: 200px;
+  position: relative;
+  /* background-color: red; */
+  left: 20%;
+  display: flex;
+}
+.navlink {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  position: relative;
+
+  justify-content: right;
+
+  /* background-color: blue; */
+}

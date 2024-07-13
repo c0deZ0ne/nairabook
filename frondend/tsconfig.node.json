@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "strictNullChecks": true,
+    "skipLibCheck": true,
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true
+  },
+  "include": [
+    "vite.config.ts",
+    "tailwind.config.js",
+    "node_modules/react/index.d.ts",
+    "node_modules/react-dom/index.d.ts"
+  ]
+}

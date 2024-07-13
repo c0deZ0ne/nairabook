@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="generator" content="Hugo 0.104.2" />
+
+    <link
+      href="/stylesheets/bootstrap/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/stylesheets/register.css" />
+  </head>
+  <body>
+    <!-- <img src="/images/home.jpg" class="bg-img" alt="" /> -->
+    <div
+      class="modal modal-signin position-static d-block bg-secondary py-3"
+      tabindex="-1"
+      role="dialog"
+      id="modalSignin"
+      style="opacity: 1"
+    >
+      <!-- <div class="modal-dialog" role="document"> -->
+      <div
+        class="modal-content p-3 rounded-4 shadow"
+        style="width: 40vw; margin: 0 auto"
+      >
+        <div class="modal-header p-5 pb-4 border-bottom-0">
+          <h1 class="fw-bold mb-0 fs-2">New Book</h1>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+
+        <div class="modal-body p-5 pt-0">
+          <form class="" id="reg-form">
+            <div class="form-floating mb-3">
+              <input
+                onkeyup="handleChange(this)"
+                type="text"
+                name="title"
+                class="form-control rounded-3"
+                id="floatingInput"
+                placeholder="Book title"
+              />
+              <label for="floatingInput">Book title</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input
+                name="description"
+                type="text"
+                class="form-control rounded-3"
+                id="floatingPassword"
+                placeholder=" Book description"
+                onkeyup="handleChange(this)"
+              />
+              <label for="floatingPassword">Description</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input
+                onkeyup="handleChange(this)"
+                type="text"
+                name="image"
+                class="form-control rounded-3"
+                id="floatingInput"
+                placeholder="Image Url"
+              />
+              <label for="floatingInput">Image Url</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input
+                name="price"
+                type="number"
+                class="form-control rounded-3"
+                id="price"
+                placeholder="address"
+                onkeyup="handleChange(this)"
+              />
+              <label for="address">Price</label>
+            </div>
+
+            <button
+              class="w-100 mb-2 btn btn-lg rounded-3 btn-primary"
+              type="submit"
+            >
+              Create Book
+            </button>
+            <small class="text-muted">Add Books to you collectios</small>
+            <hr class="my-4" />
+          </form>
+        </div>
+      </div>
+      <!-- </div> -->
+    </div>
+
+    <script src="/script/js/bootstrap.bundle.min.js"></script>
+    <script src="/script/index.js"></script>
+  </body>
+</html>

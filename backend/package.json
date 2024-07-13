@@ -1,0 +1,39 @@
+{
+  "name": "week5-009",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": " node  ./dist/app.js",
+    "dev": " nodemon  ./src/app.ts",
+    "decagon": "nodemon ./dist/app",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "-": "^0.0.1",
+    "@types/cookie-parser": "^1.4.3",
+    "@types/morgan": "^1.9.3",
+    "@types/node": "^18.11.8",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "debug": "~2.6.9",
+    "dotenv": "^16.0.3",
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
+    "http-errors": "~1.6.3",
+    "jade": "~1.11.0",
+    "jsonwebtoken": "^8.5.1",
+    "morgan": "~1.9.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.8.4",
+    "@types/cors": "^2.8.12",
+    "@types/express": "^4.17.14",
+    "@types/jsonwebtoken": "^8.5.9"
+  },
+  "devDependencies": {
+    "@types/bootstrap": "^5.2.5",
+    "@types/cors": "^2.8.12",
+    "@types/express": "^4.17.14",
+    "@types/jsonwebtoken": "^8.5.9",
+    "nodemon": "^2.0.20"
+  }
+}
