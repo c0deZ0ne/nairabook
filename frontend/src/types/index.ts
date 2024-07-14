@@ -65,6 +65,18 @@ export interface ISidBarItems {
   children?: ISidBarItems[];
 }
 
+export interface IBook {
+  
+    id:string,
+    authorId:string
+    title: string;
+    author: string;
+    publicationDate: string;
+    genre: string;
+    description: string;
+    coverImage:string
+  
+}
 export interface IAuthenticatedUser {
   clientId: number | null;
   isOrgActive: boolean;
@@ -97,6 +109,8 @@ export interface IAuthenticatedUser {
   isUpdatedRequired: boolean;
   sysConfig: null | Record<any, any>;
   sideBar: ISidBarItems[];
+  authorId:string,
+  books:Array<IBook>
 }
 
 export type schedularData = { dueDate: Date; description: string; tax: string };
@@ -118,26 +132,26 @@ export interface IUserSliceInitState {
   isLoading: boolean;
 }
 
-export interface TaxTask {
-  id: number;
-  taxPseudoMnemonic: string;
-  isTicketSent: boolean;
-  isRead: boolean;
-  createdOn: string;
-  nextReminderDate: string;
-  dueDate: string;
-  isAcknowledged: boolean;
-  isSubmitted: boolean;
-  submittedDate: string;
-  submittedBy: string;
-  isReviewed: boolean;
-  reviewedBy: string | null;
-  reviewDate: string | null;
-  requiredDocuments: string[];
-  isInternal: boolean;
-  message: string | null;
-  financialYear: number;
-}
+// export interface TaxTask {
+//   id: number;
+//   taxPseudoMnemonic: string;
+//   isTicketSent: boolean;
+//   isRead: boolean;
+//   createdOn: string;
+//   nextReminderDate: string;
+//   dueDate: string;
+//   isAcknowledged: boolean;
+//   isSubmitted: boolean;
+//   submittedDate: string;
+//   submittedBy: string;
+//   isReviewed: boolean;
+//   reviewedBy: string | null;
+//   reviewDate: string | null;
+//   requiredDocuments: string[];
+//   isInternal: boolean;
+//   message: string | null;
+//   financialYear: number;
+// }
 
 export enum timeType {
   DEADLINE = 'DEADLINE',

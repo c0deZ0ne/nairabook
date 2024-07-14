@@ -14,19 +14,19 @@ export const Button: React.FC<ButtonProps> = ({
 }: ButtonProps) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const handleNavigate = () => {
+  const handleNavigate = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     if (url) {
       dispatch(closeModal());
       navigate(url ? url : '#');
     } else {
-      return handleClick ? handleClick(url ? url : '#') : null;
+      return handleClick ? handleClick(url ? url : e) : null;
     }
   };
 
   return (
     <button
       value={value}
-      onClick={handleNavigate}
+      onClick={(e)=>handleNavigate(e)}
       style={{
         ...style,
         alignItems: 'center',

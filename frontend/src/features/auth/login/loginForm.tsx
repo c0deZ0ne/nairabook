@@ -18,11 +18,9 @@ const LoginForm = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      if (currentRole === 'SuperAdmin' || currentRole === 'Administrator') {
-        navigate('/profile/admin/analytics');
-      } else {
-        navigate('/profile/client/overview');
-      }
+     
+        navigate('/profile/client/books');
+    
     }
   }, [isAuthenticated, currentRole, navigate]);
 
@@ -130,7 +128,7 @@ const LoginForm = () => {
           value="Sign In"
         />
 
-        <div className='flex gap-[10px]'>
+        <div className="flex gap-[10px]">
           <Link
             to="/auth/forgot-password"
             className="text-black hover:text-blue-600 font-semibold leading-6"

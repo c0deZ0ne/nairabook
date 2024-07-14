@@ -74,9 +74,6 @@ function AuthUserDetails({
         }
       ></div>
 
-      {/* <Popover open={true} >
-        
-      </Popover> */}
     </div>
   );
 }

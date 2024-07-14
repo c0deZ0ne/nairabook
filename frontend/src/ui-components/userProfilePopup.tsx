@@ -18,15 +18,10 @@ const UserModal = ({ profilePix, handleClose }: any) => {
     userName,
     roles,
   } = useSelector((state: RootState) => state.persistUser);
-  const [changeRole, { data, isLoading, isError, isSuccess }] =
-    useChangeRoleMutation();
+  
   const dispatch = useDispatch();
   const [selectedRole, setSelectedRole] = useState(null);
-  useEffect(() => {
-    if (selectedRole) {
-      changeRole(SystemRoles[selectedRole]);
-    }
-  }, [selectedRole]);
+ 
 
   const handleAccountSwitch = async (data: any) => {
     setSelectedRole(data.value);
@@ -36,11 +31,7 @@ const UserModal = ({ profilePix, handleClose }: any) => {
     dispatch(openModal({ element: AppLoading() }));
     dispatch(logout({}));
   };
-  useEffect(() => {
-    if (isSuccess) {
-      handleClose();
-    }
-  }, [isSuccess]);
+ 
   return (
     <div className=" relative flex items-center  font-Open Sans w-[100%] h-[100%] border rounded-md flex-col">
       <div className="w-[270px]  h-[100%] py-[20px] align-middle   flex flex-col  ">
@@ -81,18 +72,7 @@ const UserModal = ({ profilePix, handleClose }: any) => {
               className={'mr-[-3px]'}
             />
 
-            <SelectButton
-              items={roles.map((role) => ({ key: role, value: role }))}
-              handleSelect={(switchData: any) =>
-                handleAccountSwitch({ ...switchData })
-              }
-              isRadio={true}
-              fieldName={undefined}
-              locationKey={''}
-              className={''}
-              fill={''}
-              value={'Switch Account'}
-            />
+           
           </span>
           <span
             className=" relative bg-slate-200 text-black cursor-pointer flex flex-row items-center hover:drop-shadow-2xl gap-x-[10px] hover:bg-blue-800 group w-full px-[10px] rounded-md transition-colors ease-linear duration-1000 hover:text-white h-[35px]"

@@ -37,7 +37,7 @@ import UpArrow from './upArrow';
 import UploadIcon from './uploadIcon';
 import UserIcon from './userIcon';
 import { AiOutlineAudit } from 'react-icons/ai';
-import { BiSolidDashboard } from 'react-icons/bi';
+import { BiPen, BiSolidDashboard } from 'react-icons/bi';
 import { BsFillBellFill } from 'react-icons/bs';
 import { GrCompliance } from 'react-icons/gr';
 import { HiDocumentDuplicate } from 'react-icons/hi2';
@@ -96,4 +96,5 @@ export const allIcons: any = {
   SiPrivateinternetaccess,
   IoMdSettings,
   FaUsersGear,
+  BiPen
 };

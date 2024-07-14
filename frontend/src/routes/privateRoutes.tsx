@@ -6,12 +6,14 @@ import UserClientLayout from '../layout/userLayout';
 import Notfound from '../layout/globals/notfound';
 
 import ChangePasswordForm from '../features/auth/changePassord/changePassword';
+import Book from '../features/author/book/book';
 function PrivateRoutes() {
   return (
     <GuardedRoute>
       <Routes>
         <Route path={'client'} element={<UserClientLayout />}>
-          {/* <Route path={'report'} element={<Report />} /> */}
+
+          <Route path="books" element={<Book />} />
           <Route path="change-password" element={<ChangePasswordForm />} />
           <Route path="*" element={<Notfound />} />
         </Route>

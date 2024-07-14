@@ -1,7 +1,7 @@
 // authSlice.ts
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState, store } from '../../redux/store';
-import { IAuthenticatedUser } from '../../types';
+import { IAuthenticatedUser, IBook } from '../../types';
 import { apiClient, apiSlice, multipartFormSlice } from '../../redux/apiSlice';
 import { AppError } from '../../ui-components/alert/alerts';
 import AppLoading from '../../ui-components/appLoading';
@@ -39,6 +39,8 @@ const initialState: IAuthenticatedUser = {
   currentRole: '',
   refreshToken: null,
   sideBar: [],
+  books: [],
+  authorId: ''
 };
 // Auth Slice
 export const authSlice = createSlice({
@@ -145,6 +147,30 @@ export const authSlice = createSlice({
       });
       return { ...state, sideBar: updatedSideData };
     },
+
+    handleEditBook: (state, action) => {
+      console.log('actio>>>>>', action);
+      const bookState = state.books;
+      const editingBook = bookState.findIndex(
+        (book: IBook) => book?.id == action.payload?.id,
+      );
+      if (editingBook) {
+        const newBookState = bookState.toSpliced(
+          editingBook,
+          1,
+          action?.payload,
+        );
+        return { ...state, books: newBookState };
+      }else{
+        return state
+      }
+    },
+    handleCreateBook: (state, action:PayloadAction<IBook>) => {
+      const bookState = state.books;
+      const newBookState = bookState.splice(0,0,{...action.payload,authorId:state.authorId,author:`${state.firstName} ${state.lastName}`});
+       state =  { ...state, books: newBookState };
+       return state
+    },
   },
 });
 
@@ -159,6 +185,8 @@ export const {
   setAccessToken,
   activateOrganisation,
   handleSideClick,
+  handleEditBook,
+  handleCreateBook
 } = authSlice.actions;
 
 export const selectUser = (state: RootState) => state.persistUser;

@@ -4,26 +4,35 @@ export const sideBarData = {
   User: [
     {
       icon: 'BiSolidDashboard',
-      path: '/profile/client/overview',
-      title: 'Overview',
+      path: '/profile/client/books',
+      title: 'books',
       isActive: false,
     },
 
     {
-      icon: 'BsFillBellFill',
-      path: '/profile/client/tax-updates',
-      title: 'Tax Updates',
+      icon: 'BiPen',
+      path: '/profile/client/write',
+      title: 'Write',
+      isActive: false,
+    },
+    {
+      icon: 'SlSettings',
+      path: '/profile/client/settings',
+      title: 'Account settings',
       isActive: false,
     },
   ],
 };
 
+import { nanoid } from '@reduxjs/toolkit';
 import React from 'react';
 
-export const data = {
+export const AppData = {
   books: [
     {
       title: 'The Enchanted Forest',
+      id:nanoid(32),
+      authorId:nanoid(32),
       author: 'Alice Johnson',
       publicationDate: 'January 15, 2021',
       genre: 'Fantasy',
@@ -31,6 +40,9 @@ export const data = {
         "A captivating tale of a young girl's adventures in a magical forest.",
     },
     {
+      id:nanoid(32),
+      authorId:nanoid(32),
+
       title: 'Mystery at the Manor',
       author: 'John Smith',
       publicationDate: 'March 22, 2019',
@@ -38,6 +50,8 @@ export const data = {
       description: 'A gripping mystery set in an old, secluded manor house.',
     },
     {
+      id:nanoid(32),
+      authorId:nanoid(32),
       title: 'Love in the Time of Algorithms',
       author: 'Emma Brown',
       publicationDate: 'June 10, 2020',
@@ -46,6 +60,8 @@ export const data = {
         'A modern love story exploring relationships in the digital age.',
     },
     {
+      id:nanoid(32),
+      authorId:nanoid(32),
       title: 'The Last Frontier',
       author: 'Michael Davis',
       publicationDate: 'August 5, 2022',
@@ -54,6 +70,8 @@ export const data = {
         'An epic journey through space to find a new home for humanity.',
     },
     {
+      id:nanoid(32),
+      authorId:nanoid(32),
       title: 'Echoes of the Past',
       author: 'Linda Roberts',
       publicationDate: 'November 12, 2018',

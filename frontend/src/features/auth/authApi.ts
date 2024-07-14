@@ -13,7 +13,7 @@ import {
   setUserSide,
 } from './authSlice';
 import { AppError, AppSuccess } from '../../ui-components/alert/alerts';
-import { sideBarData } from '../../data';
+import { AppData, sideBarData } from '../../data';
 import { openModal } from '../modal/modalSlice';
 import AppLoading from '../../ui-components/appLoading';
 
@@ -50,6 +50,7 @@ export const authApi: any = apiSlice.injectEndpoints({
                 ...newData,
                 isAuthenticated: true,
                 sideBar: sideBarData.User,
+                books:AppData?.books
               }),
             );
             if (
