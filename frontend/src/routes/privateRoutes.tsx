@@ -12,7 +12,6 @@ function PrivateRoutes() {
     <GuardedRoute>
       <Routes>
         <Route path={'client'} element={<UserClientLayout />}>
-
           <Route path="books" element={<Book />} />
           <Route path="change-password" element={<ChangePasswordForm />} />
           <Route path="*" element={<Notfound />} />

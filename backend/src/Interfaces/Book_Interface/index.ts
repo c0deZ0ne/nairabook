@@ -4,4 +4,9 @@ export default interface ICourses {
   image?: string;
   price?: number;
   id?: string;
+  coverImage?: string;
+  genre?: string;
+  publicationDate?: string;
+  authorId?: string;
+  author?: string;
 }

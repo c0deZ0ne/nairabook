@@ -14,11 +14,41 @@ import {
 } from './authSlice';
 import { AppError, AppSuccess } from '../../ui-components/alert/alerts';
 import { AppData, sideBarData } from '../../data';
-import { openModal } from '../modal/modalSlice';
+import { closeModal, openModal } from '../modal/modalSlice';
 import AppLoading from '../../ui-components/appLoading';
 
 export const authApi: any = apiSlice.injectEndpoints({
   endpoints: (builder: any) => ({
+    registerAccount: builder.mutation({
+      query: (credentials: { username: string; password: string }) => ({
+        url: 'api/Auth/register',
+        method: 'POST',
+        body: { ...credentials },
+      }),
+      async onQueryStarted(args: any, { queryFulfilled, dispatch }: any) {
+        dispatch(openModal({ element: AppLoading() }));
+        try {
+          const { data } = await queryFulfilled;
+          const newData: IAuthenticatedUser = {
+            ...data?.data,
+            isAuthenticated: false,
+            userName: args?.username,
+          };
+          
+            dispatch(
+              AppSuccess({
+                message: data.message,
+                url: '/auth/login',
+                isTimed: 2000,
+              }),
+            );
+          return newData;
+        } catch (error: any) {
+          dispatch(resetAuth());
+          dispatch(AppError(error));
+        }
+      },
+    }),
     login: builder.mutation({
       query: (credentials: { username: string; password: string }) => ({
         url: 'api/Auth/login',
@@ -31,49 +61,15 @@ export const authApi: any = apiSlice.injectEndpoints({
           const { data, message } = await queryFulfilled;
           const newData: IAuthenticatedUser = {
             ...data?.data,
-            isAuthenticated: false,
-            userName: args?.username,
           };
-
-          if (data?.data.isChangePasswordRequired) {
-            dispatch(setUser({ ...newData, isAuthenticated: false }));
-            dispatch(
-              AppSuccess({
-                message: message || data.message,
-                url: '/auth/change-password',
-                isTimed: 2000,
-              }),
-            );
-          } else {
-            dispatch(
-              setUser({
-                ...newData,
-                isAuthenticated: true,
-                sideBar: sideBarData.User,
-                books:AppData?.books
-              }),
-            );
-            if (
-              data.data?.roles?.includes('SuperAdmin') ||
-              data?.data?.roles?.includes('Administrator')
-            ) {
-              dispatch(
-                AppSuccess({
-                  message: message || data.message,
-                  url: '/profile/admin/analytics',
-                  isTimed: 2000,
-                }),
-              );
-            } else {
-              dispatch(
-                AppSuccess({
-                  message: message || data.message,
-                  url: '/profile/client/overview',
-                  isTimed: 2000,
-                }),
-              );
-            }
-          }
+          dispatch(setUser({ ...newData, isAuthenticated: true,sideBar:sideBarData.User }));
+          dispatch(
+            AppSuccess({
+              message: message || data?.message,
+              url: '/profile/client/books',
+              isTimed: 2000,
+            }),
+          );
           return newData;
         } catch (error: any) {
           dispatch(resetAuth());
@@ -172,6 +168,7 @@ export const authApi: any = apiSlice.injectEndpoints({
 
 export const {
   useLoginMutation,
+  useRegisterAccountMutation,
   useChangePasswordMutation,
   useDesktopLoginMutation,
   useRequestPasswordOtpMutation,

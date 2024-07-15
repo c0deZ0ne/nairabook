@@ -8,19 +8,17 @@ export default function authmiddleware(
   next: NextFunction
 ) {
   // get the token from the request and verify it then send status to the next
-  //the token ist stored in the Bearer+token and its stored in the authorization header of the request
   try {
-    let auth = req.headers["cookie"];
+    let auth = req.headers["authorization"];
     if (auth == null || auth == undefined)
       throw { code: 403, message: "not authenticated" };
-    let token = String(auth).split("book_auto=")[1];
+    let token = String(auth).split("Bearer ")[1];
     jwt.verify(
       token,
       process.env.SECRETEKEY_TOKEN_KEY || "secrete",
       (err: any, user: any) => {
         if (user) {
           req.user = user;
-          // console.log(user)
           next();
         } else {
           throw { code: 403, message: "unAuthorized user" };

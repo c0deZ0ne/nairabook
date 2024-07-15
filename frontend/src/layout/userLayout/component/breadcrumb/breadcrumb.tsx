@@ -16,7 +16,6 @@ function Breadcrumb({
   Element,
   showBack,
   title,
-
 }: {
   Element?: any;
   showBack: boolean;
@@ -44,7 +43,7 @@ function Breadcrumb({
           {title}
         </div>
       </div>
-     {Element}
+      {Element}
     </div>
   );
 }

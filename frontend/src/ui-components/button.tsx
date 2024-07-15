@@ -14,7 +14,9 @@ export const Button: React.FC<ButtonProps> = ({
 }: ButtonProps) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const handleNavigate = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const handleNavigate = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ) => {
     if (url) {
       dispatch(closeModal());
       navigate(url ? url : '#');
@@ -26,7 +28,7 @@ export const Button: React.FC<ButtonProps> = ({
   return (
     <button
       value={value}
-      onClick={(e)=>handleNavigate(e)}
+      onClick={(e) => handleNavigate(e)}
       style={{
         ...style,
         alignItems: 'center',

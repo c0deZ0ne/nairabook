@@ -17,7 +17,7 @@ book_route.post("/create", authmiddleware, _create_book); //done
 
 book_route.patch("/update/:bookId", authmiddleware, _update_book); //update a book
 
-book_route.delete("/delete/:bookId", getUser, authmiddleware, _delete_book); // delete a book
+book_route.post("/delete/:bookId", authmiddleware, _delete_book); // delete a book
 
 book_route.get("/*", (req, res, next) => {
   try {

@@ -45,7 +45,7 @@ import { RxDashboard } from 'react-icons/rx';
 import { SlOrganization, SlSettings } from 'react-icons/sl';
 import { SiPrivateinternetaccess } from 'react-icons/si';
 import { IoMdSettings } from 'react-icons/io';
-import { FaUsersGear } from 'react-icons/fa6';
+import { FaTrashCan, FaUsersGear } from 'react-icons/fa6';
 
 export const allIcons: any = {
   overview: OverviewIcon,
@@ -96,5 +96,6 @@ export const allIcons: any = {
   SiPrivateinternetaccess,
   IoMdSettings,
   FaUsersGear,
-  BiPen
+  BiPen,
+  FaTrashCan,
 };

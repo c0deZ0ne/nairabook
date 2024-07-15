@@ -4,13 +4,10 @@ import { RootState, store } from '../../redux/store';
 import { IAuthenticatedUser, IBook } from '../../types';
 import { apiClient, apiSlice, multipartFormSlice } from '../../redux/apiSlice';
 import { AppError } from '../../ui-components/alert/alerts';
-import AppLoading from '../../ui-components/appLoading';
-import { closeModal, openModal } from '../modal/modalSlice';
+import { closeModal } from '../modal/modalSlice';
 
 const initialState: IAuthenticatedUser = {
   clientId: null,
-  country: '',
-  daysToExpiration: 0,
   email: '',
   firstName: '',
   imageContent: '',
@@ -23,24 +20,16 @@ const initialState: IAuthenticatedUser = {
   permissions: [],
   phoneNumber: '',
   roles: [],
-  taxTypes: [],
   userName: '',
   isAuthenticated: false,
   accessToken: null,
-  isGroup: false,
-  userData: undefined,
-  address: '',
-  companyEmail: null,
-  supervisorEmail: null,
-  department: null,
-  isUpdatedRequired: false,
-  sysConfig: null,
-  isOrgActive: false,
-  currentRole: '',
   refreshToken: null,
   sideBar: [],
   books: [],
-  authorId: ''
+  authorId: '',
+  name: '',
+  fullName: '',
+  currentRole: ''
 };
 // Auth Slice
 export const authSlice = createSlice({
@@ -52,34 +41,15 @@ export const authSlice = createSlice({
       return state;
     },
 
-    updateUserData: (
-      state,
-      action: PayloadAction<{ key: string; value: any }>,
-    ) => {
-      state = {
-        ...state,
-        isUpdatedRequired: true,
-        [action.payload.key]: action.payload.value,
-      };
-      return state;
-    },
-    activateOrganisation: (state) => {
-      state = { ...state, isOrgActive: true };
-      return state;
-    },
+   
+   
 
     setAccessToken: (state, action: PayloadAction<{ accessToken: string }>) => {
       state = { ...state, accessToken: action.payload.accessToken };
       return state;
     },
 
-    setISSaveRequiredFalse: (
-      state,
-      action: PayloadAction<{ isUpdatedRequired: boolean }>,
-    ) => {
-      state = { ...state, isUpdatedRequired: action.payload.isUpdatedRequired };
-      return state;
-    },
+  
     SwitchCurrentRole: (
       state,
       action: PayloadAction<{ currentRole: string; accessToken: string }>,
@@ -149,27 +119,32 @@ export const authSlice = createSlice({
     },
 
     handleEditBook: (state, action) => {
-      console.log('actio>>>>>', action);
-      const bookState = state.books;
-      const editingBook = bookState.findIndex(
-        (book: IBook) => book?.id == action.payload?.id,
-      );
-      if (editingBook) {
-        const newBookState = bookState.toSpliced(
-          editingBook,
-          1,
-          action?.payload,
-        );
-        return { ...state, books: newBookState };
-      }else{
-        return state
-      }
+      const bookState = state.books.map((book) => {
+        if (book.id == action.payload.id) {
+          return action.payload;
+        } else {
+          return book;
+        }
+      });
+      state.books = bookState;
+      return state;
     },
-    handleCreateBook: (state, action:PayloadAction<IBook>) => {
+    handleCreateBook: (state, action: PayloadAction<IBook>) => {
       const bookState = state.books;
-      const newBookState = bookState.splice(0,0,{...action.payload,authorId:state.authorId,author:`${state.firstName} ${state.lastName}`});
-       state =  { ...state, books: newBookState };
-       return state
+      const newBookState = bookState.toSpliced(0, 0, {
+        ...action.payload,
+      
+      });
+      state.books = newBookState;
+      return state;
+    },
+    handleDeleteBook: (state, action: PayloadAction<IBook>) => {
+      const bookState = state.books;
+      const newBookState = bookState.filter(
+        (book) => book.id !== action.payload.id,
+      );
+      state.books = newBookState;
+      return state;
     },
   },
 });
@@ -179,14 +154,12 @@ export const {
   resetAuth,
   setUserSide,
   logout,
-  updateUserData,
-  setISSaveRequiredFalse,
   SwitchCurrentRole,
   setAccessToken,
-  activateOrganisation,
   handleSideClick,
   handleEditBook,
-  handleCreateBook
+  handleCreateBook,
+  handleDeleteBook,
 } = authSlice.actions;
 
 export const selectUser = (state: RootState) => state.persistUser;

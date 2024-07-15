@@ -1,21 +1,19 @@
-import { json } from "stream/consumers";
 import database from "../../database/Database";
 import ICourses from "../../Interfaces/Book_Interface";
 import IUser from "../../Interfaces/User_interface";
 import geneateUid from "../../Utils/GenUid";
+import { NextFunction } from "express";
 
 export const _get_all_books = async (req: any, res: any, next: any) => {
   try {
-    // let all_data = await database.get()
-    let allbooks = await database.get_all_books();
-    return res.json({ code: 200, allbooks });
+    let allBooks = await database.get_all_books();
+    return res.json({ code: 200, data:allBooks,message:"Operation Successful" });
   } catch (error) {
     next(error);
   }
 };
 export const _create_book = async (req: any, res: any, next: any) => {
   try {
-    console.log(req.body);
     let new_book = req.body;
     new_book.id = new geneateUid().gen();
     const { email } = req?.user; // get the email from jwt
@@ -24,7 +22,7 @@ export const _create_book = async (req: any, res: any, next: any) => {
       UserData[0].Courses?.unshift(new_book);
       let relsult = await database.update(email, UserData[0]);
       if (relsult) {
-        res.status(201).json({ code: 201, relsult });
+        res.status(201).json({ code: 201,data: relsult[0]['Courses'][0], message: "book created"});
       } else {
         throw { code: 400, message: "could not create book" };
       }
@@ -34,47 +32,57 @@ export const _create_book = async (req: any, res: any, next: any) => {
     next(error);
   }
 };
-
-export const _update_book = async (req: any, res: any, next: any) => {
-  //joi filed auth
-
+export const _update_book = async (req: Request|any, res: |any, next: NextFunction) => {
   try {
     const { bookId } = req.params;
-    const { email, _id } = req.user;
-    console.log(bookId, email, _id, req.body);
-    let bookFields: ICourses = req.body;
-    let all_books = await database.get_all_books();
-    let userData: IUser[] | null = await database.findByEmail(email);
+    const { email } = req.user;
+    const bookFields: Partial<ICourses> = req.body; // Ensure bookFields is of type ICourses or its partial
 
-    let book_to_update = all_books.filter((book) => book.id == bookId);
+    // Fetch all books and user data
+    const all_books = await database.get_all_books();
+    const userData: IUser[] | null = await database.findByEmail(email);
 
-    if (book_to_update.length > 0) {
-      book_to_update.forEach((filed) => {
-        bookFields["description"]
-          ? (filed.description = bookFields["description"])
-          : null;
-        bookFields["title"] ? (filed.title = bookFields["title"]) : null;
-        bookFields["image"] ? (filed.image = bookFields["image"]) : null;
-        bookFields["price"] ? (filed.price = bookFields["price"]) : null;
-      });
+    // Find the book to update
+    const book_to_update = all_books.find((book) => book.id === bookId);
 
-      if (userData) {
-        if (userData.length > 0) {
-          userData[0].Courses?.forEach((books) => {
-            if (books.id == bookId) return book_to_update;
-            return books;
-          });
-
-          database.update(email, userData[0]);
-        }
-      }
-
-      res.status(200).json(book_to_update);
-    } else {
-      throw { code: 400, message: " couldn't update" };
+    if (!book_to_update) {
+      throw { code: 400, message: "Book not found or couldn't update" };
     }
+    if (bookFields.description) {
+      book_to_update.description = bookFields.description;
+    }
+    if (bookFields.title) {
+      book_to_update.title = bookFields.title;
+    }
+    if (bookFields.image) {
+      book_to_update.image = bookFields.image;
+    }
+    if (bookFields.coverImage) {
+      book_to_update.coverImage = bookFields.coverImage;
+    }
+    if (bookFields.price) {
+      book_to_update.price = bookFields.price;
+    }
+    if (bookFields.genre) {
+      book_to_update.genre = bookFields.genre;
+    }
+    if (bookFields.publicationDate) {
+      book_to_update.publicationDate = bookFields.publicationDate;
+    }
+
+    // Update user's courses if user data exists
+    if (userData && userData.length > 0) {
+      const updatedCourses = userData[0].Courses?.map((book) =>
+        book.id === bookId ? { ...book, ...book_to_update } : book
+      );
+      userData[0].Courses = updatedCourses;
+      await database.update(email, userData[0]);
+    }
+
+    // Respond with updated book
+    res.status(200).json({code:200,message:"Updated successfully",data:book_to_update});
   } catch (error) {
-    next(error);
+    next(error); // Pass error to the next middleware
   }
 };
 

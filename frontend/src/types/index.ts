@@ -66,25 +66,22 @@ export interface ISidBarItems {
 }
 
 export interface IBook {
-  
-    id:string,
-    authorId:string
-    title: string;
-    author: string;
-    publicationDate: string;
-    genre: string;
-    description: string;
-    coverImage:string
-  
+  id: string;
+  authorId: string;
+  title: string;
+  author: string;
+  publicationDate: string;
+  genre: string;
+  description: string;
+  coverImage: string;
 }
 export interface IAuthenticatedUser {
   clientId: number | null;
-  isOrgActive: boolean;
+  name:string;
+  fullName:string;
   userName: string | null;
   currentRole: string;
   refreshToken: string | null;
-  country: string | null;
-  daysToExpiration: number | null;
   email: string | null;
   firstName: string | null;
   imageContent: string | null;
@@ -97,20 +94,11 @@ export interface IAuthenticatedUser {
   permissions: string[] | null;
   phoneNumber: string | null;
   roles: string[];
-  isGroup: boolean;
-  taxTypes: any[] | null; // You can replace 'any[]' with the appropriate type if needed
   isAuthenticated: boolean | null;
   accessToken: string | null;
-  userData: Record<any, any> | undefined;
-  address: string | null;
-  companyEmail: string | null;
-  supervisorEmail: string | null;
-  department: string | null;
-  isUpdatedRequired: boolean;
-  sysConfig: null | Record<any, any>;
   sideBar: ISidBarItems[];
-  authorId:string,
-  books:Array<IBook>
+  authorId: string;
+  books: Array<IBook>;
 }
 
 export type schedularData = { dueDate: Date; description: string; tax: string };
@@ -131,27 +119,6 @@ export interface IUserSliceInitState {
   isAuthenticated: boolean;
   isLoading: boolean;
 }
-
-// export interface TaxTask {
-//   id: number;
-//   taxPseudoMnemonic: string;
-//   isTicketSent: boolean;
-//   isRead: boolean;
-//   createdOn: string;
-//   nextReminderDate: string;
-//   dueDate: string;
-//   isAcknowledged: boolean;
-//   isSubmitted: boolean;
-//   submittedDate: string;
-//   submittedBy: string;
-//   isReviewed: boolean;
-//   reviewedBy: string | null;
-//   reviewDate: string | null;
-//   requiredDocuments: string[];
-//   isInternal: boolean;
-//   message: string | null;
-//   financialYear: number;
-// }
 
 export enum timeType {
   DEADLINE = 'DEADLINE',

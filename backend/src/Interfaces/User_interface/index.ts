@@ -19,4 +19,5 @@ export default interface IUser {
   isAdmin: boolean;
   password: string;
   Courses?: ICourses[];
+  name?:string
 }

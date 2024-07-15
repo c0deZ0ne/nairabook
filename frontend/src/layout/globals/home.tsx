@@ -1,32 +1,46 @@
-import React from 'react';
+import React, { useState } from 'react';
 import placeholderImage from '../../assets/images/white-wooden-working-table-with-office-supplies-stuff-digital-devices_212889-3900.webp'; // Placeholder image from W3C
 import Header from './header';
 import Navbar from '../../ui-components/navbar/navbat';
 import Bookcard from '../../ui-components/cards/bookcard';
 import { AppData } from '../../data';
+import { useGetAllBooksQuery } from '../../features/author/book/bookApi';
 
 const Home = () => {
-  // const placeholderImage = "data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='100%' height='100%' fill='%23999'%3E%3C/rect%3E%3Ctext x='50%' y='50%' fill='%23fff' text-anchor='middle' font-size='24px' font-family='Arial' dy='.3em'%3E400x300%3C/text%3E%3C/svg%3E"
-
+  const [query, setQuery] = useState<{
+    pageNumber: number;
+    pageSize: number;
+    filter: string | undefined;
+  }>({
+    pageNumber: 1,
+    pageSize: 10,
+    filter: undefined,
+  });
+  const {
+    data: allBooks,
+    isFetching,
+    isError,
+    isSuccess,
+  } = useGetAllBooksQuery(query);
   return (
     <>
-      <Navbar />
-
-      <div className="p-4 bg-gradient-to-r from-blue-50 to-blue-100 min-h-screen h-[100vh] overflow-y-auto">
-        <div
-          className={
-            'flex flex-row h-[70px]  justify-center align-middle text-center items-center my-[10px] '
-          }
-        >
-          <h2 className="text-3xl font-semibold text-blue-700 mb-6 flex self-center">
-            Books
-          </h2>
-        </div>
-        <section className="mb-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {AppData.books.map((book, index) => (
-              <Bookcard book={book} index={index}/>
-              
+      <div className="flex  lg:w-[80%] w-[100%] h-[10%]  sticky top-[0px] align-middle self-center mr-auto ml-auto z-[200000000]">
+        <Navbar />
+      </div>
+      <div className="    lg:w-[80%]  h-[100%]   align-middle self-center mr-auto ml-auto overflow-x-hidden overflow-y-hidden relative">
+        <section className="mb-8 h-[85%] overflow-y-auto relative">
+          <div
+            className={
+              'flex flex-row  justify-center align-middle text-center items-center my-[10px] '
+            }
+          >
+            <h2 className="text-3xl font-semibold text-blue-700 mb-6 flex self-center">
+              Books
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 overflow-y-auto h-[2]">
+            {allBooks?.data?.map((book, index) => (
+              <Bookcard book={book} index={index} />
             ))}
           </div>
         </section>

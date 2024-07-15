@@ -30,7 +30,7 @@ app.use(cors());
 //routes
 
 var isAth = false;
-app.use("/user/book", book_route);
+app.use("/api/user/book", book_route);
 app.use("/user", User_route);
 app.use("/api/Auth", auth_route);
 

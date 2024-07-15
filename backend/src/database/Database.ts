@@ -46,7 +46,7 @@ export class Database implements IDatabase {
   constructor(public _path: string) {
     _path = path.resolve(`${this.db_path}`, _path);
     this._init(_path).then((d: any) => {
-      console.log("_______databae ready ______");
+      console.log("_______databae ready ______",_path);
     });
   }
 

@@ -73,7 +73,6 @@ function AuthUserDetails({
           ' items-center align-middle flex flex-row rounded-full relative bg-gray-600  cursor-pointer'
         }
       ></div>
-
     </div>
   );
 }

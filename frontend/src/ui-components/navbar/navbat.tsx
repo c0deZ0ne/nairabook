@@ -11,25 +11,26 @@ import { BiLogIn, BiRegistered } from 'react-icons/bi';
 const Navbar = () => {
   const profile =
     "data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='100%' height='100%' fill='%23999'%3E%3C/rect%3E%3Ctext x='50%' y='50%' fill='%23fff' text-anchor='middle' font-size='24px' font-family='Arial' dy='.3em'%3E400x300%3C/text%3E%3C/svg%3E";
-
+  const { name, imageContent, currentRole, isAuthenticated } = useSelector(
+    (state: RootState) => state.persistUser,
+  );
   const dispatch = useDispatch();
   const navBarItem = [
     {
       icon: BiLogIn,
-      title: 'Login',
-      path: '/auth/login',
+      title: !isAuthenticated ? 'login' : 'Books',
+      path: !isAuthenticated ? '/auth/login' : '/',
     },
-    {
-      icon: BiRegistered,
-      title: 'Register',
-      path: 'auth/register',
-      onClick: () => dispatch(handleSideClick({ path: '', title: '' })),
-    },
+    !isAuthenticated
+      ? {
+          icon: BiRegistered,
+          title: 'Register',
+          path: 'auth/register',
+          onClick: () => dispatch(handleSideClick({ path: '', title: '' })),
+        }
+      : undefined,
   ];
 
-  const { firstName, lastName, imageContent, currentRole } = useSelector(
-    (state: RootState) => state.persistUser,
-  );
   const base64Image = imageContent
     ? `data:image/png;base64,${imageContent}`
     : profile;
@@ -54,10 +55,13 @@ const Navbar = () => {
     <>
       <div
         className={
-          'w-[100%] bg-Splenzert-primary-white h-[70px] flex flex-row items-center justify-between px-[30px] relative'
+          'w-[100%] bg-gradient-to-r from-blue-50 to-blue-100 h-[70px] flex flex-row items-center justify-between px-[20px] relative'
         }
       >
-        <Link to={'/auth/login'} className="text-[2em]">
+        <Link
+          to={!isAuthenticated ? '/auth/login' : '/'}
+          className="text-[1.8em]"
+        >
           Nairabook
         </Link>
         <div
@@ -67,19 +71,29 @@ const Navbar = () => {
         >
           <div className="md:w-[136px] md:gap-[32px] h-[100%] flex flex-row align-middle items-center">
             {navBarItem.map((d, i) => (
-              <div key={i} onClick={d.onClick}>
-                <Link to={d.path || '#'}>{d.title}</Link>
-              </div>
+              <>
+                {d ? (
+                  <div key={i} onClick={d.onClick}>
+                    <Link to={d.path || '#'}>{d.title}</Link>
+                  </div>
+                ) : (
+                  ''
+                )}
+              </>
             ))}
           </div>
-
-          <div className={'flex  flex-row ml-[15px] '}>
-            <AuthUserDetails
-              name={`${firstName} ${lastName}` || 'update profile'}
-              profilePix={base64Image}
-              title={currentRole}
-            />
-          </div>
+          {isAuthenticated ? (
+            <Link
+              to={'/profile/client/books'}
+              className={'flex  flex-row ml-[15px] '}
+            >
+              <AuthUserDetails
+                name={`${name}` || 'update profile'}
+                profilePix={base64Image}
+                title={currentRole}
+              />
+            </Link>
+          ) : null}
         </div>
       </div>
       <Popover

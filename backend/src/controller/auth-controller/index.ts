@@ -1,27 +1,19 @@
 
-import { Request, Response, NextFunction } from "express";
+import e, { Request, Response, NextFunction } from "express";
 import dotenv from "dotenv";
 import { GenPassword, validatePassword } from "../../Utils/passwordUtils";
 import database from "../../database/Database";
 import generateUid from "../../Utils/GenUid";
-import IUser from "../../Interfaces/User_interface";
 import { Gentoken } from "../../Utils/Token";
 
 dotenv.config();
 
 // Register
 export const _Register = async (req: Request|any, res: Response, next: NextFunction) => {
-  if (req.method === "GET") {
-    if (!req.user) {
-      return res.render("register");
-    }
-    return res.redirect("/user/dashboard");
-  }
 
   try {
     const { email, password } = req.body;
     const existingUser = await database.findByEmail(email);
-
     if (existingUser) {
       return next({ code: 403, message: "User already exists" });
     }
@@ -84,7 +76,10 @@ export const _Login = async (req: Request|any, res: Response, next: NextFunction
       code: 200,
       message: "Login successful",
       data:{
-        ...user[0],
+        email: user[0].email,
+        authorId: user[0]._id,        
+        name: user[0].fullname||user[0].name,
+        books: user[0].Courses,
         accessToken: token,
         isChangePasswordRequired:false
       }

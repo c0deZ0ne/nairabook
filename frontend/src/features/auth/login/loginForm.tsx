@@ -5,24 +5,20 @@ import { userLoginSchema } from '../../../validations';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '../../../ui-components/button';
 import { loginCredentials } from '../../../types';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { RootState } from '../../../redux/store';
 import { useLoginMutation } from '../authApi';
 
 const LoginForm = () => {
-  const { isAuthenticated, currentRole } = useSelector(
+  const { isAuthenticated } = useSelector(
     (state: RootState) => state.persistUser,
   );
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-
   useEffect(() => {
     if (isAuthenticated) {
-     
-        navigate('/profile/client/books');
-    
+      navigate('/profile/client/books');
     }
-  }, [isAuthenticated, currentRole, navigate]);
+  }, [isAuthenticated, navigate]);
 
   const [showPassword, setShowPassword] = useState(false);
   const [login, { isLoading }] = useLoginMutation();
@@ -34,11 +30,8 @@ const LoginForm = () => {
     };
 
     try {
-      const { data } = await login({ ...credentials }).unwrap();
-      // Handle the data if needed
-    } catch (error) {
-      // Handle the error if needed
-    }
+      await login({ ...credentials }).unwrap();
+    } catch (error) {}
   };
 
   const { values, handleBlur, touched, handleChange, handleSubmit, errors } =

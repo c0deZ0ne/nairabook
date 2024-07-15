@@ -2,11 +2,17 @@ import React from 'react';
 import { FormikValues, useFormik } from 'formik';
 import { registerUserSchema } from '../../../validations';
 import { Button } from '../../../ui-components/button';
+import { useRegisterAccountMutation } from '../authApi';
 
 function RegisterForm() {
+  const [registerAccount, { data: registerData, isLoading, isError }] =
+    useRegisterAccountMutation();
+
   const onSubmit = async (values: FormikValues, actions: FormikValues) => {
-    await new Promise((resolve) => setTimeout(resolve, 5000));
-    actions.resetForm();
+    try {
+      registerAccount(values);
+    } catch (error) {}
+   
   };
 
   const {
@@ -136,7 +142,7 @@ function RegisterForm() {
           className={`bg-blue-600 h-10 text-white flex justify-center items-center ${
             isSubmitting ? 'cursor-wait opacity-50' : ''
           }`}
-          props={{ type: 'submit', disabled: isSubmitting }}
+          props={{ type: 'submit', disabled: isLoading }}
           value="Create Account"
         />
       </form>

@@ -7,7 +7,7 @@ import dayjs from 'dayjs';
 import moment from 'moment';
 
 function SideProfile() {
-  const { firstName, lastName, imageContent } = useSelector(
+  const {  imageContent, name } = useSelector(
     (state: RootState) => state.persistUser,
   );
   const [greeting, setGreeting] = useState('');
@@ -75,7 +75,7 @@ function SideProfile() {
           <div style={{ ...nameContainerStyle }}>
             <span style={{ ...greetingStyle }}>{greeting}</span>
             <span style={{ ...nameStyle }}>
-              {getName(`${firstName} ${lastName}` || 'update')}
+              {getName(`${name}` || 'update')}
             </span>
           </div>
           {/* Name Section End */}
