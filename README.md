@@ -12,7 +12,7 @@ This project is a Node.js backend server that uses in-memory data structures to 
 
 ### Prerequisites
 - Node.js installed on your machine
-- npm (Node package manager) installed
+- yarn (package manager installed)
 
 ### Setup
 1. Clone the repository:
