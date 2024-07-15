@@ -19,24 +19,6 @@ This project is a Node.js backend server that uses in-memory data structures to 
    ```bash
    git clone https://github.com/c0deZ0ne/nairabook.git
    cd nairabook
-<!-- Configure your environment:
-
-2. Locate the env.sample file in both the frontend and backend directories.
-Rename the file to .env and update the values to match your environment settings.
-Install the dependencies:
-
-
-3.run severs
- cd ../backend
-run yarn 
-Start the servers: yarn dev
- cd ../frontend
-run yarn 
-Start the servers: yarn dev
-
-http://localhost:4000
-Ensure port 4000 is configured for your frontend. -->
-
 Copy code
 ## Configure Your Environment
 
