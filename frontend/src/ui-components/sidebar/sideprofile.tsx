@@ -7,7 +7,7 @@ import dayjs from 'dayjs';
 import moment from 'moment';
 
 function SideProfile() {
-  const {  imageContent, name } = useSelector(
+  const { imageContent, name } = useSelector(
     (state: RootState) => state.persistUser,
   );
   const [greeting, setGreeting] = useState('');

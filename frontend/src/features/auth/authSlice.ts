@@ -29,7 +29,7 @@ const initialState: IAuthenticatedUser = {
   authorId: '',
   name: '',
   fullName: '',
-  currentRole: ''
+  currentRole: '',
 };
 // Auth Slice
 export const authSlice = createSlice({
@@ -41,15 +41,11 @@ export const authSlice = createSlice({
       return state;
     },
 
-   
-   
-
     setAccessToken: (state, action: PayloadAction<{ accessToken: string }>) => {
       state = { ...state, accessToken: action.payload.accessToken };
       return state;
     },
 
-  
     SwitchCurrentRole: (
       state,
       action: PayloadAction<{ currentRole: string; accessToken: string }>,
@@ -133,7 +129,6 @@ export const authSlice = createSlice({
       const bookState = state.books;
       const newBookState = bookState.toSpliced(0, 0, {
         ...action.payload,
-      
       });
       state.books = newBookState;
       return state;

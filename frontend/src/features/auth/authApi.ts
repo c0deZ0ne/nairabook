@@ -34,14 +34,14 @@ export const authApi: any = apiSlice.injectEndpoints({
             isAuthenticated: false,
             userName: args?.username,
           };
-          
-            dispatch(
-              AppSuccess({
-                message: data.message,
-                url: '/auth/login',
-                isTimed: 2000,
-              }),
-            );
+
+          dispatch(
+            AppSuccess({
+              message: data.message,
+              url: '/auth/login',
+              isTimed: 2000,
+            }),
+          );
           return newData;
         } catch (error: any) {
           dispatch(resetAuth());
@@ -62,7 +62,13 @@ export const authApi: any = apiSlice.injectEndpoints({
           const newData: IAuthenticatedUser = {
             ...data?.data,
           };
-          dispatch(setUser({ ...newData, isAuthenticated: true,sideBar:sideBarData.User }));
+          dispatch(
+            setUser({
+              ...newData,
+              isAuthenticated: true,
+              sideBar: sideBarData.User,
+            }),
+          );
           dispatch(
             AppSuccess({
               message: message || data?.message,

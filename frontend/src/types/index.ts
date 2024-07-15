@@ -77,8 +77,8 @@ export interface IBook {
 }
 export interface IAuthenticatedUser {
   clientId: number | null;
-  name:string;
-  fullName:string;
+  name: string;
+  fullName: string;
   userName: string | null;
   currentRole: string;
   refreshToken: string | null;

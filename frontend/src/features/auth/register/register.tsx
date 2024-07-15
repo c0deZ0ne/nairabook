@@ -12,7 +12,6 @@ function RegisterForm() {
     try {
       registerAccount(values);
     } catch (error) {}
-   
   };
 
   const {
