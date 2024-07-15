@@ -99,7 +99,7 @@ export const _delete_book = async (req: any, res: any, next: any) => {
 
         userData[0].Courses = dat;
         database.update(email, userData[0]);
-        res.status(200).json({ code: 200, message: " Delete succesfully" });
+        res.status(200).json({ code: 200, message: " Delete successfully" });
       } else {
         throw { code: 400, message: "could not delete" };
       }

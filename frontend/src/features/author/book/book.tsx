@@ -36,7 +36,6 @@ function Book() {
       deleteBook(data.book);
       return;
     } else if (data.type === 'edit') {
-      console.log(data);
       setEditBook(() => data?.book);
       handleClick(data.event);
     } else if (data.type === 'create') {

@@ -28,7 +28,6 @@ import { buildURL } from "../../../utils";
           dispatch(openModal({ element: AppLoading() }));
           try {
             const { data }: any = await queryFulfilled;
-            console.log(data)
             dispatch(closeModal())
             return data;
           } catch (error) {}

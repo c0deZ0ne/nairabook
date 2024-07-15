@@ -13,7 +13,6 @@ export class Database implements IDatabase {
   _init = async (filepath: string) => {
     try {
       return  fs.readFile(path.join(filepath), async  (error, data) => {
-        //console.log('in db')
         if (error?.code == "ENOENT") {
           console.error("file does not exist, creating db >>>>>");
           //check for file exist

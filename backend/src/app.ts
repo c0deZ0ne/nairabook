@@ -11,8 +11,6 @@ import User_route from "./routes/UserRoute/User_rote";
 import auth_route from "./routes/authRoute/auth_route";
 import cors from "cors";
 import database from "./database/Database";
-import { Validatetoken } from "./Utils/Token";
-import { getUser } from "./controller/auth-controller/middleware/isAuthenticated";
 dotenv.config();
 
 var app: Application = express();
